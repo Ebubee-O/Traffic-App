@@ -1,0 +1,18 @@
+# Node.js/React
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# Python/Flask
+backend/unizik_traffic/__pycache__/
+backend/unizik_traffic/*.pyc
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+backend/unizik_traffic/serviceAccountKey.json
+
+# PythonAnywhere logs
+*.log
