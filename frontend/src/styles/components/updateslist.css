@@ -1,0 +1,11 @@
+.updates {
+  max-width: 600px;
+  margin: 20px auto;
+}
+.updates h3 {
+  text-align: center;
+}
+.update-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
