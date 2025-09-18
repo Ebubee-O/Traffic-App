@@ -9,7 +9,7 @@ app = create_app()
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_frontend(path):
-    static_dir = '/home/tradingwithkings/Real-Time-Traffic-Updates/backend/unizik_traffic/static'
+    static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'unizik_traffic/static')
     if path and os.path.exists(os.path.join(static_dir, path)):
         return send_from_directory(static_dir, path)
     return send_from_directory(static_dir, 'index.html')
