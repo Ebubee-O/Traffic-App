@@ -3,28 +3,15 @@ import L from 'leaflet';
 
 function Map() {
   useEffect(() => {
-    const map = L.map('map').setView([6.2657, 7.1086], 13); // UNIZIK coordinates
+    const map = L.map('map').setView([6.2657, 7.1086], 13); // UNIZIK/Ifite center
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
       maxZoom: 19,
     }).addTo(map);
-
-    // Add Google Maps layer (requires Google Maps API)
-    const googleLayer = new L.GridLayer.GoogleMutant({
-      type: 'roadmap',
-    }).addTo(map);
-
-    // Traffic layer
-    const trafficLayer = new L.GridLayer.GoogleMutant({
-      type: 'roadmap',
-      traffic: true,
-    }).addTo(map);
-
-    return () => {
-      map.remove();
-    };
+    return () => map.remove();
   }, []);
 
-  return <div id="map" style={{ height: '600px', width: '100%' }} />;
+  return <div id="map" className="h-96 w-full rounded-lg shadow-lg mb-4"></div>;
 }
 
 export default Map;
