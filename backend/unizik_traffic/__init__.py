@@ -9,7 +9,7 @@ jwt = JWTManager()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile('../../config.py')
+    app.config.from_pyfile('../config.py')
     
     db.init_app(app)
     bcrypt.init_app(app)
@@ -19,5 +19,5 @@ def create_app():
     init_routes(app)
     
     with app.app_context():
-        db.create_all()  # Create database tables
+        db.create_all()
     return app
