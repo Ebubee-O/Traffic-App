@@ -5,5 +5,5 @@ npm run build
 cp -r dist/* ../backend/unizik_traffic/static/
 cd ..
 git add .
-git commit -m "Deploy new build"
+git commit -m "Deploy build"
 git push origin main
