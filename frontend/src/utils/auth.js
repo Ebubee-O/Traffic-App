@@ -1,19 +1,38 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
-
-const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id"
+export const login = async (email, password) => {
+  const response = await fetch('https://tradingwithkings.pythonanywhere.com/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    localStorage.setItem('token', data.token);
+    return data;
+  }
+  throw new Error(data.error);
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+export const signup = async (email, password) => {
+  const response = await fetch('https://tradingwithkings.pythonanywhere.com/api/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    return data;
+  }
+  throw new Error(data.error);
+};
 
-export const auth = firebase.auth();
-export const db = firebase.firestore();
+export const logout = () => {
+  localStorage.removeItem('token');
+};
+
+export const getToken = () => {
+  return localStorage.getItem('token');
+};
+
+export const isAuthenticated = () => {
+  return !!getToken();
+};
