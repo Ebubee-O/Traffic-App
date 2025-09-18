@@ -10,6 +10,7 @@ function ReportForm() {
       try {
         await submitReport({ text: report });
         setReport('');
+        alert('Report submitted!');
       } catch (error) {
         alert(error.message);
       }
@@ -17,9 +18,21 @@ function ReportForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={report} onChange={(e) => setReport(e.target.value)} placeholder="Submit traffic/road update" required />
-      <button type="submit">Submit</button>
+    <form onSubmit={handleSubmit} className="flex gap-4 mb-4">
+      <input
+        type="text"
+        value={report}
+        onChange={(e) => setReport(e.target.value)}
+        placeholder="Submit traffic update (e.g., Traffic at Ifite gate)"
+        className="flex-1 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+        required
+      />
+      <button
+        type="submit"
+        className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700"
+      >
+        Submit
+      </button>
     </form>
   );
 }
