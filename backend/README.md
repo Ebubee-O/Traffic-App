@@ -1,15 +1,15 @@
-UNIZIK Traffic Updates Backend
-Overview
-Flask backend for UNIZIK Traffic Updates, using SQLite for user authentication and report storage, deployed on PythonAnywhere.
+Traffic App Backend
+Flask backend with SQLite for user authentication and traffic reports.
 Setup
 
-Install dependencies: pip install -r requirements.txt
-Set environment variables in .env.
-Deploy on PythonAnywhere with wsgi.py.
+Install: pip install -r requirements.txt
+Upload .env with secrets.
+Initialize DB: python -c "from unizik_traffic import create_app; app = create_app();"
+Deploy: Configure WSGI to wsgi.py.
 
-API Endpoints
+Endpoints
 
-POST /api/signup: Create a new user.
-POST /api/login: Authenticate user and return JWT.
-POST /api/reports: Submit a traffic report (JWT required).
-GET /api/reports/recent: Fetch last 10 reports (JWT required).
+POST /api/signup: Create user
+POST /api/login: Get JWT
+POST /api/reports: Submit report
+GET /api/reports/recent: Get last 10 reports
