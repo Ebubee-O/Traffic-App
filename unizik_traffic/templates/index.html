@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Real-Time Traffic & Road Updates - UNIZIK Area</h1>
+  <div id="map" class="mb-4"></div>
+  <form method="POST" class="mb-4">
+    {{ form.hidden_tag() }}
+    <div class="input-group">
+      {{ form.text(class="form-control", placeholder="Submit traffic/road update") }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <input type="hidden" id="latitude" name="latitude" value="">
+    <input type="hidden" id="longitude" name="longitude" value="">
+  </form>
+  <h3>Recent Updates</h3>
+  <div class="list-group">
+    {% for report in reports %}
+      <div class="list-group-item">
+        <p class="mb-1">{{ report.text }}</p>
+        <small class="text-muted">By User #{{ report.user_id }} at {{ report.timestamp }} {% if report.latitude %} (Location: {{ report.latitude }}, {{ report.longitude }}) {% endif %}</small>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+{% endblock %}
